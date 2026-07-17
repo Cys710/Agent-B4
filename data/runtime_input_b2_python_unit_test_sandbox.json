@@ -1,0 +1,10 @@
+{
+  "conversation_id": "conv_b2_python_unit_test_sandbox",
+  "user_input": "请调用 python_unit_test_sandbox Skill 验证一个 add 函数和 is_even 函数，测试 add(1, 2)=3、add(-1, 5)=4、is_even(7)=true，并总结通过和失败情况。",
+  "system_prompt_path": "../prompts/local_tool_agent.txt",
+  "selected_memory_ids": [],
+  "use_global_memory": false,
+  "toolset": "extended_tools",
+  "max_turns": 3,
+  "save_memory": "none"
+}

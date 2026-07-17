@@ -1,0 +1,500 @@
+[
+  {
+    "type": "function",
+    "function": {
+      "name": "calculator",
+      "description": "Calculate a safe arithmetic expression.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "expression": {
+            "type": "string",
+            "description": "Arithmetic expression using numbers and supported operators."
+          }
+        },
+        "required": [
+          "expression"
+        ],
+        "additionalProperties": false
+      },
+      "x-returns": {
+        "type": "object",
+        "properties": {
+          "result": {
+            "type": "number",
+            "description": "Calculated value."
+          }
+        }
+      },
+      "x-schema-source": "config"
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "file_reader",
+      "description": "Read a local UTF-8 txt or md file from the data directory.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "path": {
+            "type": "string",
+            "description": "Path relative to the configured data root."
+          },
+          "max_chars": {
+            "type": "integer",
+            "description": "Maximum number of characters to return."
+          }
+        },
+        "required": [
+          "path"
+        ],
+        "additionalProperties": false
+      },
+      "x-returns": {
+        "type": "object",
+        "properties": {
+          "content": {
+            "type": "string",
+            "description": "File content."
+          },
+          "num_chars": {
+            "type": "integer",
+            "description": "Returned character count."
+          },
+          "source": {
+            "type": "string",
+            "description": "Normalized path relative to data root."
+          },
+          "truncated": {
+            "type": "boolean",
+            "description": "Whether content was truncated."
+          }
+        }
+      },
+      "x-schema-source": "config"
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "local_file_search",
+      "description": "Search local txt and md files for query terms.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string",
+            "description": "Search query."
+          },
+          "root_dir": {
+            "type": "string",
+            "description": "Directory relative to data root."
+          },
+          "file_types": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "File extensions to search."
+          },
+          "top_k": {
+            "type": "integer",
+            "description": "Maximum number of matches."
+          }
+        },
+        "required": [
+          "query"
+        ],
+        "additionalProperties": false
+      },
+      "x-returns": {
+        "type": "object",
+        "properties": {
+          "query_terms": {
+            "type": "array",
+            "description": "Normalized query terms used for ranking."
+          },
+          "results": {
+            "type": "array",
+            "description": "Ranked paths, snippets, and scores."
+          }
+        }
+      },
+      "x-schema-source": "config"
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "table_analyzer",
+      "description": "Analyze a local CSV or TSV file.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "path": {
+            "type": "string",
+            "description": "Table path relative to data root."
+          },
+          "max_rows_preview": {
+            "type": "integer",
+            "description": "Number of preview rows."
+          },
+          "describe": {
+            "type": "boolean",
+            "description": "Whether to calculate numeric statistics."
+          }
+        },
+        "required": [
+          "path"
+        ],
+        "additionalProperties": false
+      },
+      "x-returns": {
+        "type": "object",
+        "properties": {
+          "num_rows": {
+            "type": "integer",
+            "description": "Data row count."
+          },
+          "num_columns": {
+            "type": "integer",
+            "description": "Column count."
+          },
+          "columns": {
+            "type": "array",
+            "description": "Column names."
+          },
+          "preview": {
+            "type": "array",
+            "description": "First rows."
+          },
+          "describe": {
+            "type": "object",
+            "description": "Numeric statistics by column."
+          }
+        }
+      },
+      "x-schema-source": "config"
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "format_converter",
+      "description": "Convert text to markdown bullets or formatted JSON and write the converted content to a file.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "text": {
+            "type": "string",
+            "description": "Input text."
+          },
+          "target_format": {
+            "type": "string",
+            "description": "markdown or json."
+          },
+          "output_filename": {
+            "type": "string",
+            "description": "Optional output filename. Defaults to converted.md or converted.json."
+          }
+        },
+        "required": [
+          "text",
+          "target_format"
+        ],
+        "additionalProperties": false
+      },
+      "x-returns": {
+        "type": "object",
+        "properties": {
+          "formatted_text": {
+            "type": "string",
+            "description": "Converted text."
+          },
+          "generated_file_path": {
+            "type": "string",
+            "description": "Path of the generated output file."
+          }
+        }
+      },
+      "x-schema-source": "config"
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "read_then_convert",
+      "description": "Read a local txt or md file, convert the content to markdown or JSON, and write the converted file.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "path": {
+            "type": "string",
+            "description": "Path relative to the configured data root."
+          },
+          "target_format": {
+            "type": "string",
+            "description": "markdown or json."
+          },
+          "max_chars": {
+            "type": "integer",
+            "description": "Maximum number of file characters to read before conversion."
+          },
+          "output_filename": {
+            "type": "string",
+            "description": "Optional output filename."
+          }
+        },
+        "required": [
+          "path",
+          "target_format"
+        ],
+        "additionalProperties": false
+      },
+      "x-returns": {
+        "type": "object",
+        "properties": {
+          "source": {
+            "type": "string",
+            "description": "Source file path relative to data root."
+          },
+          "num_chars": {
+            "type": "integer",
+            "description": "Number of source characters converted."
+          },
+          "truncated": {
+            "type": "boolean",
+            "description": "Whether source content was truncated before conversion."
+          },
+          "target_format": {
+            "type": "string",
+            "description": "Conversion target format."
+          },
+          "formatted_text": {
+            "type": "string",
+            "description": "Converted text."
+          },
+          "generated_file_path": {
+            "type": "string",
+            "description": "Path of the generated output file."
+          }
+        }
+      },
+      "x-schema-source": "config"
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "python_sandbox",
+      "description": "Execute a short restricted Python snippet with AST checks, timeout, and output limits.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "Short Python code snippet. Imports and file access are blocked."
+          },
+          "timeout_seconds": {
+            "type": "number",
+            "description": "Execution timeout",
+            "max 5 seconds.": null
+          },
+          "max_output_chars": {
+            "type": "integer",
+            "description": "Maximum stdout/stderr characters to return."
+          }
+        },
+        "required": [
+          "code"
+        ],
+        "additionalProperties": false
+      },
+      "x-returns": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "description": "success if the snippet completed without exception."
+          },
+          "stdout": {
+            "type": "string",
+            "description": "Captured standard output."
+          },
+          "stderr": {
+            "type": "string",
+            "description": "Captured standard error or traceback summary."
+          },
+          "returncode": {
+            "type": "integer",
+            "description": "Sandbox runner process return code."
+          },
+          "timed_out": {
+            "type": "boolean",
+            "description": "Whether execution timed out."
+          },
+          "truncated": {
+            "type": "boolean",
+            "description": "Whether stdout or stderr was truncated."
+          },
+          "workdir": {
+            "type": "string",
+            "description": "Temporary working directory used by the sandbox."
+          }
+        }
+      },
+      "x-schema-source": "config"
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "python_unit_test_sandbox",
+      "description": "Run restricted Python code with expression-based unit tests and return pass/fail case details.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "Python code under test. Imports and file access are blocked."
+          },
+          "tests": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            },
+            "description": "Test cases with expression and expected fields."
+          },
+          "timeout_seconds": {
+            "type": "number",
+            "description": "Execution timeout",
+            "max 5 seconds.": null
+          },
+          "max_output_chars": {
+            "type": "integer",
+            "description": "Maximum stdout/stderr characters to return."
+          }
+        },
+        "required": [
+          "code",
+          "tests"
+        ],
+        "additionalProperties": false
+      },
+      "x-returns": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "description": "completed if code and tests ran inside the sandbox."
+          },
+          "passed_count": {
+            "type": "integer",
+            "description": "Number of passed test cases."
+          },
+          "failed_count": {
+            "type": "integer",
+            "description": "Number of failed test cases."
+          },
+          "all_passed": {
+            "type": "boolean",
+            "description": "Whether all test cases passed."
+          },
+          "cases": {
+            "type": "array",
+            "description": "Per-case expression",
+            "expected value": null,
+            "actual value": null,
+            "pass flag": null,
+            "and error.": null
+          },
+          "stdout": {
+            "type": "string",
+            "description": "Captured standard output."
+          },
+          "stderr": {
+            "type": "string",
+            "description": "Captured standard error or traceback summary."
+          },
+          "returncode": {
+            "type": "integer",
+            "description": "Sandbox runner process return code."
+          },
+          "timed_out": {
+            "type": "boolean",
+            "description": "Whether execution timed out."
+          },
+          "truncated": {
+            "type": "boolean",
+            "description": "Whether stdout or stderr was truncated."
+          },
+          "workdir": {
+            "type": "string",
+            "description": "Temporary working directory used by the sandbox."
+          }
+        }
+      },
+      "x-schema-source": "config"
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "web_search",
+      "description": "Search the web through an isolated subprocess request and return ranked result snippets.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string",
+            "description": "Search query."
+          },
+          "top_k": {
+            "type": "integer",
+            "description": "Maximum number of search results to return."
+          },
+          "timeout_seconds": {
+            "type": "number",
+            "description": "HTTP request timeout in seconds."
+          },
+          "mock_results": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            },
+            "description": "Optional deterministic results for offline tests and demos."
+          }
+        },
+        "required": [
+          "query"
+        ],
+        "additionalProperties": false
+      },
+      "x-returns": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string",
+            "description": "Original search query."
+          },
+          "source": {
+            "type": "string",
+            "description": "Search provider or mock."
+          },
+          "request_mode": {
+            "type": "string",
+            "description": "mock or subprocess request mode."
+          },
+          "results": {
+            "type": "array",
+            "description": "Ranked titles",
+            "URLs": null,
+            "and snippets.": null
+          }
+        }
+      },
+      "x-schema-source": "config"
+    }
+  }
+]

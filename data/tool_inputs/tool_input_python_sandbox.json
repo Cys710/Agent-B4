@@ -1,0 +1,5 @@
+{
+  "code": "values = [1, 2, 3, 4]\nprint(sum(values))\nprint(round(math.sqrt(81), 2))",
+  "timeout_seconds": 2,
+  "max_output_chars": 2000
+}

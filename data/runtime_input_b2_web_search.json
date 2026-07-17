@@ -1,0 +1,10 @@
+{
+  "conversation_id": "conv_b2_web_search",
+  "user_input": "请调用 web_search Skill 搜索“中国东北大学是什么学校？”，并根据搜索结果总结两条要点。",
+  "system_prompt_path": "../prompts/local_tool_agent.txt",
+  "selected_memory_ids": [],
+  "use_global_memory": false,
+  "toolset": "extended_tools",
+  "max_turns": 3,
+  "save_memory": "none"
+}

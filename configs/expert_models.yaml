@@ -1,0 +1,35 @@
+expert_models:
+  light_text_worker:
+    model_id: qwen3.5-0.8b
+    display_name: Qwen3.5-0.8B
+    role: light_text_worker
+    model_name_or_path: /root/siton-tmp/assignment_B/models/Qwen/Qwen3.5-0.8B
+    tokenizer_name_or_path: /root/siton-tmp/assignment_B/models/Qwen/Qwen3.5-0.8B
+    backend: transformers
+    local_files_only: true
+    trust_remote_code: true
+    torch_dtype: bfloat16
+    device_map: auto
+    task_types:
+      - summarize_short_text
+      - classify_intent
+      - rewrite_text
+      - extract_simple_fields
+
+  code_worker:
+    model_id: qwen2.5-coder-1.5b-instruct
+    display_name: Qwen2.5-Coder-1.5B-Instruct
+    role: code_worker
+    model_name_or_path: /root/siton-tmp/assignment_B/models/Qwen/Qwen2.5-Coder-1.5B-Instruct
+    tokenizer_name_or_path: /root/siton-tmp/assignment_B/models/Qwen/Qwen2.5-Coder-1.5B-Instruct
+    backend: transformers
+    local_files_only: true
+    trust_remote_code: true
+    torch_dtype: bfloat16
+    device_map: auto
+    task_types:
+      - generate_code
+      - explain_code
+      - debug_code
+      - write_unit_tests
+      - fix_python_error

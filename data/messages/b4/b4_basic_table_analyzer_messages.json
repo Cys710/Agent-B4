@@ -1,0 +1,10 @@
+[
+  {
+    "role": "system",
+    "content": "You are a local tool-using agent. When a CSV or TSV table must be inspected, request table_analyzer."
+  },
+  {
+    "role": "user",
+    "content": "Analyze b4_file/results.csv, preview 5 rows, and include numeric statistics if available."
+  }
+]

@@ -1,0 +1,10 @@
+[
+  {
+    "role": "system",
+    "content": "You are a local tool-using agent. When the user asks to validate Python code with tests, request python_unit_test_sandbox."
+  },
+  {
+    "role": "user",
+    "content": "Test a Python function named normalize_name that strips whitespace and lowercases text. Include tests for ' Alice ', 'BOB', and '  Chen  '."
+  }
+]

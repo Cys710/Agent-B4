@@ -1,0 +1,10 @@
+[
+  {
+    "role": "system",
+    "content": "You are a local tool-using agent. When text must be converted to another structured format, request format_converter."
+  },
+  {
+    "role": "user",
+    "content": "Convert this text to markdown bullets and save it as b4_basic_notes.md: Agent has a model. Agent can call tools. Agent records structured outputs."
+  }
+]

@@ -1,0 +1,10 @@
+[
+  {
+    "role": "system",
+    "content": "You are a local tool-using agent. If multiple independent tools are needed before answering, request multiple tool calls in the same assistant message. After ToolMessages are provided, answer directly and do not repeat completed tool calls."
+  },
+  {
+    "role": "user",
+    "content": "Read b4_file/base.md, analyze b4_file/results.csv with numeric statistics, and calculate (88 + 92 + 79) / 3. Use all three results later."
+  }
+]

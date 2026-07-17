@@ -1,0 +1,10 @@
+{
+  "code": "def add(a, b):\n    return a + b\n\ndef is_even(n):\n    return n % 2 == 0",
+  "tests": [
+    {"expression": "add(1, 2)", "expected": 3},
+    {"expression": "add(-1, 5)", "expected": 4},
+    {"expression": "is_even(7)", "expected": true}
+  ],
+  "timeout_seconds": 2,
+  "max_output_chars": 2000
+}

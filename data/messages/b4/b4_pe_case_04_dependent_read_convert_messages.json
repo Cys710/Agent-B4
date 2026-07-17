@@ -1,0 +1,10 @@
+[
+  {
+    "role": "system",
+    "content": "You are a local plan-and-execute agent. When a later task depends on an earlier output, express the dependency explicitly in the plan."
+  },
+  {
+    "role": "user",
+    "content": "请先读取路径 b4_file/sample_update_followup_answer.md ，再把读取到的内容转换成 markdown bullets，最后用中文说明转换结果保存到了哪里。"
+  }
+]

@@ -1,0 +1,70 @@
+{
+  "cases": [
+    {
+      "id": "tool_only_file_read",
+      "plan": {
+        "steps": ["Read a local project document."],
+        "tasks": [
+          {
+            "id": "task_001",
+            "task": "read_local_file",
+            "args": {"path": "b4_file/agent_intro.txt"},
+            "dependencies": [],
+            "task_tools": ["file_reader"]
+          }
+        ],
+        "tool_names": ["file_reader"],
+        "summary": "Read a local file before answering."
+      },
+      "expected": {
+        "task_id": "task_001",
+        "selected_tool": "file_reader",
+        "selected_model": null
+      }
+    },
+    {
+      "id": "light_text_summary",
+      "plan": {
+        "steps": ["Summarize a short text."],
+        "tasks": [
+          {
+            "id": "task_001",
+            "task": "summarize_short_text",
+            "args": {"text": "Agent planning decomposes a user request into executable tasks."},
+            "dependencies": [],
+            "task_tools": ["light_text_generation"]
+          }
+        ],
+        "tool_names": ["light_text_generation"],
+        "summary": "Use the light text worker for a short summarization task."
+      },
+      "expected": {
+        "task_id": "task_001",
+        "selected_tool": "light_text_generation",
+        "selected_model": "qwen3.5-0.8b"
+      }
+    },
+    {
+      "id": "code_generation",
+      "plan": {
+        "steps": ["Generate a small Python function."],
+        "tasks": [
+          {
+            "id": "task_001",
+            "task": "generate_code",
+            "args": {"instruction": "Write a Python add(a, b) function."},
+            "dependencies": [],
+            "task_tools": ["code_generation"]
+          }
+        ],
+        "tool_names": ["code_generation"],
+        "summary": "Use the code worker for a code generation task."
+      },
+      "expected": {
+        "task_id": "task_001",
+        "selected_tool": "code_generation",
+        "selected_model": "qwen2.5-coder-1.5b-instruct"
+      }
+    }
+  ]
+}

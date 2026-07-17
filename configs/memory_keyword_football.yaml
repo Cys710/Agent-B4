@@ -1,0 +1,20 @@
+memory:
+  root_dir: ../memory_keyword_football
+  global_memory_dir: global
+  conversation_memory_dir: conversations
+  index_path: memory_index.json
+  max_memory_chars: 4000
+  vector_retrieval:
+    backend: fastembed
+    model_name_or_path: BAAI/bge-small-zh-v1.5
+    device: cpu
+    normalize_embeddings: true
+    local_files_only: true
+    hf_endpoint: https://hf-mirror.com
+    batch_size: 16
+    threads: 2
+    cache_dir: ../models/embedding_models/fast-bge-small-zh-v1.5
+  update:
+    enabled: false
+  compression:
+    enabled: false

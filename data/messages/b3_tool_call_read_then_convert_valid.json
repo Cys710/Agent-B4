@@ -1,0 +1,16 @@
+{
+  "role": "assistant",
+  "content": "",
+  "tool_calls": [
+    {
+      "id": "call_read_convert_001",
+      "name": "read_then_convert",
+      "args": {
+        "path": "docs/agent_intro.txt",
+        "target_format": "markdown",
+        "max_chars": 2000,
+        "output_filename": "agent_intro_tool.md"
+      }
+    }
+  ]
+}

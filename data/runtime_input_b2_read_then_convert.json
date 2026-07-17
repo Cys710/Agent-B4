@@ -1,0 +1,10 @@
+{
+  "conversation_id": "conv_b2_read_then_convert",
+  "user_input": "请调用 read_then_convert Skill 读取 docs/agent_intro.txt，并把读取到的内容转换成 markdown 文件，然后用一句话说明生成文件路径。",
+  "system_prompt_path": "../prompts/local_tool_agent.txt",
+  "selected_memory_ids": [],
+  "use_global_memory": false,
+  "toolset": "extended_tools",
+  "max_turns": 3,
+  "save_memory": "none"
+}

@@ -1,0 +1,43 @@
+{
+  "mem_course_001": {
+    "memory_id": "mem_course_001",
+    "memory_type": "global",
+    "title": "Agent 基础概念",
+    "summary": "Agent 系统由模型、工具、记忆和执行循环组成。",
+    "path": "global/mem_course_001.md",
+    "conversation_id": null,
+    "created_at": "2026-06-20T00:00:00+08:00",
+    "updated_at": "2026-06-20T00:00:00+08:00"
+  },
+  "mem_conversation_conv_000": {
+    "memory_id": "mem_conversation_conv_000",
+    "memory_type": "conversation",
+    "title": "Conversation conv_000",
+    "summary": "三条中文要点如下：\n1. Agent 系统通常由模型、工具、记忆和执行循环组成\n2. 工具调用让模型能够读取本地文件、执行计算，并把结果用于后续回答\n3. Memory 为 Agent 提供全局知识和历史对话上下文",
+    "path": "conversations/conv_000.md",
+    "conversation_id": "conv_000",
+    "created_at": "2026-06-22T14:07:46+00:00",
+    "updated_at": "2026-06-28T22:51:12+08:00",
+    "last_update_operation": "auto_merge"
+  },
+  "mem_conversation_conv_sample_001": {
+    "memory_id": "mem_conversation_conv_sample_001",
+    "memory_type": "conversation",
+    "title": "Conversation conv_sample_001",
+    "summary": "Agent 会结合模型、工具和记忆完成任务。",
+    "path": "conversations/conv_sample_001.md",
+    "conversation_id": "conv_sample_001",
+    "created_at": "2026-06-25T16:58:19+08:00",
+    "updated_at": "2026-07-07T21:56:30+08:00"
+  },
+  "mem_conversation_conv_long_001": {
+    "memory_id": "mem_conversation_conv_long_001",
+    "memory_type": "conversation",
+    "title": "Conversation conv_long_001",
+    "summary": "本轮任务围绕 B5 Memory System 的长度管理与摘要压缩进行实现。系统首先读取 memory.yaml 中的 compression 配置，并判断本轮将要保存的 memory 文档是否超过 max_doc_chars 阈值。如果文档较短，则保持原始 Final Answer、Messages 和 Trace 的完整保存方式；如果文档过长，则进入自动压缩流程。\n\n实现上的核心结论是：me",
+    "path": "conversations/conv_long_001.md",
+    "conversation_id": "conv_long_001",
+    "created_at": "2026-06-27T13:49:29+08:00",
+    "updated_at": "2026-06-27T13:59:26+08:00"
+  }
+}

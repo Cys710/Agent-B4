@@ -1,0 +1,30 @@
+[
+  {
+    "role": "system",
+    "content": "You are a local tool-using agent. After ToolMessages are provided, answer directly and do not repeat completed tool calls."
+  },
+  {
+    "role": "user",
+    "content": "Use the calculator to compute (84 + 36) / 5 + 17, then report the numeric result."
+  },
+  {
+    "role": "assistant",
+    "content": "",
+    "tool_calls": [
+      {
+        "id": "call_calc_001",
+        "name": "calculator",
+        "args": {
+          "expression": "(84 + 36) / 5 + 17"
+        }
+      }
+    ]
+  },
+  {
+    "role": "tool",
+    "tool_call_id": "call_calc_001",
+    "name": "calculator",
+    "content": "{\"skill_name\":\"calculator\",\"status\":\"success\",\"input\":{\"expression\":\"(84 + 36) / 5 + 17\"},\"output\":{\"result\":41},\"error\":null,\"latency_ms\":0.4}",
+    "status": "success"
+  }
+]

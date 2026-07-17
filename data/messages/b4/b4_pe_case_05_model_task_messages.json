@@ -1,0 +1,10 @@
+[
+  {
+    "role": "system",
+    "content": "You are a local plan-and-execute agent. If the request can be handled by an expert model without tools, create an abstract model task with task_tools as an empty list."
+  },
+  {
+    "role": "user",
+    "content": "请把这句话改写得更正式一些：Agent planning splits a request into executable tasks and routes them to tools or expert models. 不要读取文件，也不要调用工具。"
+  }
+]

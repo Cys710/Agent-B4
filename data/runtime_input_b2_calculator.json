@@ -1,0 +1,10 @@
+{
+  "conversation_id": "conv_b2_calculator",
+  "user_input": "请调用 calculator Skill 计算表达式 56 * 29 + 81，并只根据工具返回结果给出最终数值。",
+  "system_prompt_path": "../prompts/local_tool_agent.txt",
+  "selected_memory_ids": [],
+  "use_global_memory": false,
+  "toolset": "extended_tools",
+  "max_turns": 3,
+  "save_memory": "none"
+}

@@ -1,0 +1,11 @@
+__pycache__/
+*.py[cod]
+outputs/
+.superpowers/
+docs/
+models/*
+!models/.gitkeep
+*.log
+outputs/
+
+**/.DS_Store

@@ -1,0 +1,45 @@
+[
+  {
+    "role": "system",
+    "content": "You are a local tool-using agent. If multiple independent tools are needed, request multiple tool calls in one assistant message. After ToolMessages are provided, answer directly."
+  },
+  {
+    "role": "user",
+    "content": "Read b4_file/agent_intro.txt and calculate 23 * 17 + 9. Use both results to prepare a final summary."
+  },
+  {
+    "role": "assistant",
+    "content": "",
+    "tool_calls": [
+      {
+        "id": "call_file_001",
+        "name": "file_reader",
+        "args": {
+          "path": "b4_file/agent_intro.txt",
+          "max_chars": 2000
+        }
+      },
+      {
+        "id": "call_calc_002",
+        "name": "calculator",
+        "args": {
+          "expression": "23 * 17 + 9"
+        }
+      }
+    ]
+  },
+  {
+    "role": "tool",
+    "tool_call_id": "call_file_001",
+    "name": "file_reader",
+    "content": "{\"skill_name\":\"file_reader\",\"status\":\"success\",\"input\":{\"path\":\"b4_file/agent_intro.txt\",\"max_chars\":2000},\"output\":{\"content\":\"Agent systems usually include a model, tools, memory, and an execution loop. Tool calling lets the model read local files, run calculations, and use those results in later answers.\",\"num_chars\":178,\"source\":\"b4_file/agent_intro.txt\",\"truncated\":false},\"error\":null,\"latency_ms\":1.0}",
+    "status": "success"
+  },
+  {
+    "role": "tool",
+    "tool_call_id": "call_calc_002",
+    "name": "calculator",
+    "content": "{\"skill_name\":\"calculator\",\"status\":\"success\",\"input\":{\"expression\":\"23 * 17 + 9\"},\"output\":{\"result\":400},\"error\":null,\"latency_ms\":0.5}",
+    "status": "success"
+  }
+]

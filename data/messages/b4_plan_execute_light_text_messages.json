@@ -1,0 +1,10 @@
+[
+  {
+    "role": "system",
+    "content": "You are a plan-and-execute agent. For short summarization or rewriting tasks, create a plan that uses the light_text_generation resource, then synthesize the final answer in Chinese."
+  },
+  {
+    "role": "user",
+    "content": "请先使用 light_text_generation 小模型总结下面这段话，再给出最终中文回答：Agent planning decomposes a user request into smaller executable tasks. Resource selection chooses the proper tool or expert model for each task. Task execution runs every task in dependency order and stores structured results."
+  }
+]

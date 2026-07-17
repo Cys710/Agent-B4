@@ -1,0 +1,15 @@
+{
+  "role": "assistant",
+  "content": "",
+  "tool_calls": [
+    {
+      "id": "call_sandbox_001",
+      "name": "python_sandbox",
+      "args": {
+        "code": "print(sum([10, 20, 30]))",
+        "timeout_seconds": 2,
+        "max_output_chars": 2000
+      }
+    }
+  ]
+}

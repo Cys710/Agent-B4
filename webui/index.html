@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>B2 Skill Console</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">小牛翻译实训 · B2</p>
+          <h1>B2 Skill Console</h1>
+        </div>
+        <div class="status-strip" aria-label="运行状态">
+          <div>
+            <span id="totalSkills">-</span>
+            <small>Skills</small>
+          </div>
+          <div>
+            <span id="lastStatus">Ready</span>
+            <small>Status</small>
+          </div>
+          <div>
+            <span id="lastLatency">-</span>
+            <small>Latency</small>
+          </div>
+        </div>
+      </header>
+
+      <section class="flowline" aria-label="执行链路">
+        <span>JSON Input</span>
+        <i></i>
+        <span>B2 Runner</span>
+        <i></i>
+        <span>SkillResult</span>
+        <i></i>
+        <span>Run Log</span>
+      </section>
+
+      <section class="workspace">
+        <aside class="panel skill-panel" aria-label="Skill 列表">
+          <div class="panel-head">
+            <h2>Skill</h2>
+            <span id="skillCount" class="pill">loading</span>
+          </div>
+          <div class="filter-row" role="tablist" aria-label="Skill 分类">
+            <button class="filter active" data-filter="all" type="button">全部</button>
+            <button class="filter" data-filter="基础" type="button">基础</button>
+            <button class="filter" data-filter="扩展" type="button">扩展</button>
+          </div>
+          <div id="skillList" class="skill-list"></div>
+        </aside>
+
+        <section class="panel input-panel" aria-label="JSON 输入">
+          <div class="panel-head">
+            <div>
+              <h2 id="selectedLabel">Input</h2>
+              <p id="selectedDescription"></p>
+            </div>
+            <span id="selectedCategory" class="pill accent">-</span>
+          </div>
+
+          <div class="toolbar" aria-label="输入操作">
+            <button id="normalSampleBtn" type="button">正常样例</button>
+            <button id="errorSampleBtn" type="button">异常样例</button>
+            <button id="liveSampleBtn" type="button" hidden>Live 样例</button>
+            <button id="formatBtn" type="button">格式化</button>
+          </div>
+
+          <label class="editor-label" for="jsonInput">JSON</label>
+          <textarea id="jsonInput" spellcheck="false"></textarea>
+          <div class="action-row">
+            <p id="inputHint">-</p>
+            <button id="runBtn" class="primary" type="button">执行 Skill</button>
+          </div>
+        </section>
+
+        <section class="panel result-panel" aria-label="执行结果">
+          <div class="panel-head">
+            <h2>Result</h2>
+            <div class="result-actions">
+              <button id="copyBtn" type="button">复制</button>
+              <button id="refreshHistoryBtn" type="button">刷新日志</button>
+              <button id="clearHistoryBtn" class="danger" type="button">清空日志</button>
+            </div>
+          </div>
+
+          <div id="resultSummary" class="result-summary">
+            <div>
+              <span>-</span>
+              <small>Skill</small>
+            </div>
+            <div>
+              <span>-</span>
+              <small>Status</small>
+            </div>
+            <div>
+              <span>-</span>
+              <small>Error Code</small>
+            </div>
+          </div>
+
+          <pre id="resultView" class="json-view">等待执行...</pre>
+
+          <div class="history-head">
+            <h3>Run Log</h3>
+            <span id="outputDir">-</span>
+          </div>
+          <div id="historyList" class="history-list"></div>
+        </section>
+      </section>
+    </main>
+
+    <script src="/app.js"></script>
+  </body>
+</html>

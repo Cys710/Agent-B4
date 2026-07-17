@@ -1,0 +1,12 @@
+{
+  "conversation_id": "conv_b5_auto_memory",
+  "user_input": "请结合已有 memory，说明 B5 memory 压缩、自动更新和向量检索三个拓展点当前状态。",
+  "system_prompt_path": "../prompts/local_tool_agent.txt",
+  "selected_memory_ids": [],
+  "use_global_memory": true,
+  "memory_retrieval_mode": "vector",
+  "memory_top_k": 2,
+  "toolset": "basic_tools",
+  "max_turns": 3,
+  "save_memory": "none"
+}

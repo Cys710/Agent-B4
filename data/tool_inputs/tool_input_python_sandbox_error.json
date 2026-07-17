@@ -1,0 +1,5 @@
+{
+  "code": "import os\nprint(os.listdir('.'))",
+  "timeout_seconds": 2,
+  "max_output_chars": 2000
+}

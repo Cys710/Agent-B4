@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Full Agent Demo</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <aside class="sidebar" aria-label="会话设置">
+        <div class="brand">
+          <p>本地 Agent</p>
+          <h1>Full Demo</h1>
+        </div>
+
+        <button id="newChatBtn" class="wide" type="button">新对话</button>
+
+        <section class="control-group">
+          <label for="conversationId">Conversation ID</label>
+          <input id="conversationId" type="text" value="webui_full_demo" />
+        </section>
+
+        <section class="control-grid">
+          <label>
+            <span>LLM</span>
+            <select id="llmMode">
+              <option value="mock">mock</option>
+              <option value="prompt_json">prompt_json</option>
+            </select>
+          </label>
+          <label>
+            <span>Toolset</span>
+            <select id="toolset">
+              <option value="basic_tools">basic_tools</option>
+              <option value="extended_tools">extended_tools</option>
+            </select>
+          </label>
+        </section>
+
+        <section class="switches">
+          <label class="switch-row">
+            <input id="enablePlan" type="checkbox" />
+            <span>Plan 模式</span>
+          </label>
+          <label class="switch-row">
+            <input id="useGlobalMemory" type="checkbox" />
+            <span>本次查询包含 Global</span>
+          </label>
+        </section>
+
+        <section class="control-group">
+          <label for="memoryRoot">Memory Folder</label>
+          <div class="inline-control">
+            <select id="memoryRoot"></select>
+            <button id="refreshMemoryRootsBtn" type="button">刷新</button>
+          </div>
+        </section>
+
+        <section id="newMemoryRootGroup" class="control-group" hidden>
+          <label for="newMemoryRoot">New Memory Folder</label>
+          <input id="newMemoryRoot" type="text" placeholder="memory_my_demo" />
+        </section>
+
+        <section class="control-group">
+          <label for="memoryMode">Memory 模式</label>
+          <select id="memoryMode">
+            <option value="off">off</option>
+            <option value="manual">manual</option>
+            <option value="keyword">keyword</option>
+            <option value="vector">vector</option>
+          </select>
+        </section>
+
+        <section class="control-grid">
+          <label>
+            <span>Top K</span>
+            <input id="memoryTopK" type="number" min="1" max="10" value="3" />
+          </label>
+          <label>
+            <span>Max Turns</span>
+            <input id="maxTurns" type="number" min="1" max="8" value="3" />
+          </label>
+        </section>
+
+        <section class="control-group">
+          <label for="selectedMemory">Memory IDs（manual 可填）</label>
+          <input id="selectedMemory" type="text" placeholder="mem_football_worldcup_goalkeeper, mem_xxx" />
+        </section>
+
+        <section class="control-group">
+          <label for="saveMemory">Save Memory</label>
+          <select id="saveMemory">
+            <option value="none">none</option>
+            <option value="conversation">conversation</option>
+            <option value="global">global</option>
+          </select>
+        </section>
+
+        <section class="history-block">
+          <div class="section-head">
+            <h2>Run Log</h2>
+            <button id="clearHistoryBtn" type="button">清空</button>
+          </div>
+          <div id="historyList" class="history-list"></div>
+        </section>
+      </aside>
+
+      <section class="chat-panel" aria-label="聊天">
+        <header class="chat-head">
+          <div>
+            <p>完整链路入口</p>
+            <h2>B1 + B3 + B4 + B5</h2>
+          </div>
+          <div class="status-cards">
+            <div><strong id="statusText">Ready</strong><span>Status</span></div>
+            <div><strong id="latencyText">-</strong><span>Latency</span></div>
+            <div><strong id="turnText">0</strong><span>Turns</span></div>
+          </div>
+        </header>
+
+        <div id="chatMessages" class="chat-messages"></div>
+
+        <form id="chatForm" class="composer">
+          <textarea id="messageInput" rows="3" placeholder="输入演示问题，例如：帮我阅读 docs/agent_intro.txt，总结三条中文要点。"></textarea>
+          <button id="sendBtn" type="submit">发送</button>
+        </form>
+      </section>
+
+      <aside class="debug-panel" aria-label="Debug 信息">
+        <div class="debug-tabs" role="tablist">
+          <button class="tab active" data-tab="summary" type="button">Summary</button>
+          <button class="tab" data-tab="trace" type="button">Trace</button>
+          <button class="tab" data-tab="messages" type="button">Messages</button>
+          <button class="tab" data-tab="memory" type="button">Memory</button>
+          <button class="tab" data-tab="artifacts" type="button">Files</button>
+        </div>
+        <div id="summaryView" class="debug-view"></div>
+        <pre id="jsonView" class="json-view" hidden>等待运行...</pre>
+      </aside>
+    </main>
+
+    <script src="/app.js"></script>
+  </body>
+</html>

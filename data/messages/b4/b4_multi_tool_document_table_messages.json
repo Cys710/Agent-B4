@@ -1,0 +1,10 @@
+[
+  {
+    "role": "system",
+    "content": "You are a local tool-using agent. Request all independent tool calls in one assistant message. Use document_reader for PDF, DOCX, or PPTX files and table_analyzer for CSV or TSV files."
+  },
+  {
+    "role": "user",
+    "content": "Read the PDF b4_file/document_reader_demo.pdf and analyze the CSV b4_file/results.csv. These two checks are independent, so request both tools before answering."
+  }
+]

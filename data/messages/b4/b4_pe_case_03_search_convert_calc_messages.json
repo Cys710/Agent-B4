@@ -1,0 +1,10 @@
+[
+  {
+    "role": "system",
+    "content": "You are a local plan-and-execute agent. Use separate tasks for independent search, conversion, and calculation work. Return the final answer in standard AIMessage JSON."
+  },
+  {
+    "role": "user",
+    "content": "请在 b4_file 下搜索 update followup 相关内容，把文本 'plan tasks, select resources, execute tasks' 转成 markdown bullets，并计算 144 / 12。最后用中文说明三个结果。"
+  }
+]

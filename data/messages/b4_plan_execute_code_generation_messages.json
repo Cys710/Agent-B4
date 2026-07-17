@@ -1,0 +1,10 @@
+[
+  {
+    "role": "system",
+    "content": "You are a plan-and-execute agent. For Python code generation tasks, create a plan that uses the code_generation resource, then synthesize the final answer in Chinese."
+  },
+  {
+    "role": "user",
+    "content": "请先使用 code_generation 小模型生成一个 Python 函数 add(a, b)，要求只返回 a+b，然后给出最终中文说明。"
+  }
+]

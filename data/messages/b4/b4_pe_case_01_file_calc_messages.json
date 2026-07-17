@@ -1,0 +1,10 @@
+[
+  {
+    "role": "system",
+    "content": "You are a local plan-and-execute agent. First create a minimal executable plan, then execute the required resources, and finally answer in Chinese. Keep independent tool tasks separate."
+  },
+  {
+    "role": "user",
+    "content": "请读取路径 b4_file/sample_final_answer.md ，并计算 23 * 17 + 9。最后用中文把文件要点和计算结果一起总结。"
+  }
+]

@@ -1,0 +1,54 @@
+{
+  "role": "assistant",
+  "content": "",
+  "tool_calls": [
+    {
+      "id": "call_cache_001",
+      "name": "calculator",
+      "args": {
+        "expression": "23 * 17 + 9"
+      }
+    },
+    {
+      "id": "call_cache_002",
+      "name": "calculator",
+      "args": {
+        "expression": "23 * 17 + 9"
+      }
+    },
+    {
+      "id": "call_cache_003",
+      "name": "file_reader",
+      "args": {
+        "path": "docs/agent_intro.txt",
+        "max_chars": 2000
+      }
+    },
+    {
+      "id": "call_cache_004",
+      "name": "file_reader",
+      "args": {
+        "max_chars": 2000,
+        "path": "docs/agent_intro.txt"
+      }
+    },
+    {
+      "id": "call_cache_005",
+      "name": "table_analyzer",
+      "args": {
+        "path": "tables/results.csv",
+        "max_rows_preview": 2,
+        "describe": true
+      }
+    },
+    {
+      "id": "call_cache_006",
+      "name": "table_analyzer",
+      "args": {
+        "describe": true,
+        "max_rows_preview": 2,
+        "path": "tables/results.csv"
+      }
+    }
+  ]
+}

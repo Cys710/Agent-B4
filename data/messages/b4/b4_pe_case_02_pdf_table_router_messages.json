@@ -1,0 +1,10 @@
+[
+  {
+    "role": "system",
+    "content": "You are a local plan-and-execute agent. Build a concise plan with real tool tasks where local files must be read or analyzed. Let the resource router select the best available tool."
+  },
+  {
+    "role": "user",
+    "content": "请读取路径 b4_file/document_reader_demo.pdf ，并分析路径 b4_file/results.csv 的行列和数值统计。最后用中文给出一个合并结论。"
+  }
+]

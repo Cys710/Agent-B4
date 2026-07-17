@@ -1,0 +1,222 @@
+{
+  "source": "fixture_predictions_for_schema_description_comparison",
+  "schema_variants": [
+    {
+      "id": "clear",
+      "profile": "clear",
+      "description": "保留 tools.yaml 中较完整的工具和参数描述。"
+    },
+    {
+      "id": "concise",
+      "profile": "concise",
+      "description": "压缩工具和参数描述，只保留短描述。"
+    },
+    {
+      "id": "ambiguous",
+      "profile": "ambiguous",
+      "description": "把工具和参数描述改成通用模糊描述，用于观察准确率下降。"
+    }
+  ],
+  "cases": [
+    {
+      "id": "schema_case_001",
+      "user": "请计算 56*29+81 的结果。",
+      "expected": {
+        "name": "calculator",
+        "args": {
+          "expression": "56*29+81"
+        }
+      },
+      "predictions": {
+        "clear": {
+          "id": "call_schema_001",
+          "name": "calculator",
+          "args": {
+            "expression": "56*29+81"
+          }
+        },
+        "concise": {
+          "id": "call_schema_001",
+          "name": "calculator",
+          "args": {
+            "expression": "56*29+81"
+          }
+        },
+        "ambiguous": {
+          "id": "call_schema_001",
+          "name": "calculator",
+          "args": {
+            "expression": "56*29+81"
+          }
+        }
+      }
+    },
+    {
+      "id": "schema_case_002",
+      "user": "读取 docs/agent_intro.txt 的前 2000 个字符。",
+      "expected": {
+        "name": "file_reader",
+        "args": {
+          "path": "docs/agent_intro.txt",
+          "max_chars": 2000
+        }
+      },
+      "predictions": {
+        "clear": {
+          "id": "call_schema_002",
+          "name": "file_reader",
+          "args": {
+            "path": "docs/agent_intro.txt",
+            "max_chars": 2000
+          }
+        },
+        "concise": {
+          "id": "call_schema_002",
+          "name": "file_reader",
+          "args": {
+            "path": "docs/agent_intro.txt",
+            "max_chars": 2000
+          }
+        },
+        "ambiguous": {
+          "id": "call_schema_002",
+          "name": "local_file_search",
+          "args": {
+            "query": "agent_intro",
+            "root_dir": "docs",
+            "top_k": 1
+          }
+        }
+      }
+    },
+    {
+      "id": "schema_case_003",
+      "user": "在 docs 目录搜索 tool 相关内容，返回前 2 条 txt/md 结果。",
+      "expected": {
+        "name": "local_file_search",
+        "args": {
+          "query": "tool",
+          "root_dir": "docs",
+          "file_types": [
+            "txt",
+            "md"
+          ],
+          "top_k": 2
+        }
+      },
+      "predictions": {
+        "clear": {
+          "id": "call_schema_003",
+          "name": "local_file_search",
+          "args": {
+            "query": "tool",
+            "root_dir": "docs",
+            "file_types": [
+              "txt",
+              "md"
+            ],
+            "top_k": 2
+          }
+        },
+        "concise": {
+          "id": "call_schema_003",
+          "name": "local_file_search",
+          "args": {
+            "query": "tool",
+            "root_dir": "docs",
+            "file_types": "txt,md",
+            "top_k": 2
+          }
+        },
+        "ambiguous": {
+          "id": "call_schema_003",
+          "name": "file_reader",
+          "args": {
+            "path": "docs/tool_calling.md",
+            "max_chars": 2000
+          }
+        }
+      }
+    },
+    {
+      "id": "schema_case_004",
+      "user": "分析 tables/results.csv，预览 2 行并计算数值统计。",
+      "expected": {
+        "name": "table_analyzer",
+        "args": {
+          "path": "tables/results.csv",
+          "max_rows_preview": 2,
+          "describe": true
+        }
+      },
+      "predictions": {
+        "clear": {
+          "id": "call_schema_004",
+          "name": "table_analyzer",
+          "args": {
+            "path": "tables/results.csv",
+            "max_rows_preview": 2,
+            "describe": true
+          }
+        },
+        "concise": {
+          "id": "call_schema_004",
+          "name": "table_analyzer",
+          "args": {
+            "path": "tables/results.csv",
+            "max_rows_preview": 2,
+            "describe": true
+          }
+        },
+        "ambiguous": {
+          "id": "call_schema_004",
+          "name": "file_reader",
+          "args": {
+            "path": "tables/results.csv",
+            "max_chars": 2000
+          }
+        }
+      }
+    },
+    {
+      "id": "schema_case_005",
+      "user": "把 alpha 和 beta 两行文本转换成 markdown，输出到 schema_demo.md。",
+      "expected": {
+        "name": "format_converter",
+        "args": {
+          "text": "alpha\nbeta",
+          "target_format": "markdown",
+          "output_filename": "schema_demo.md"
+        }
+      },
+      "predictions": {
+        "clear": {
+          "id": "call_schema_005",
+          "name": "format_converter",
+          "args": {
+            "text": "alpha\nbeta",
+            "target_format": "markdown",
+            "output_filename": "schema_demo.md"
+          }
+        },
+        "concise": {
+          "id": "call_schema_005",
+          "name": "format_converter",
+          "args": {
+            "text": "alpha\nbeta",
+            "target_format": "markdown"
+          }
+        },
+        "ambiguous": {
+          "id": "call_schema_005",
+          "name": "format_converter",
+          "args": {
+            "text": "alpha beta",
+            "target_format": "json",
+            "output_filename": "schema_demo.md"
+          }
+        }
+      }
+    }
+  ]
+}

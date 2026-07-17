@@ -1,0 +1,14 @@
+{
+  "role": "assistant",
+  "content": "",
+  "tool_calls": [
+    {
+      "id": "call_document_reader_001",
+      "name": "document_reader",
+      "args": {
+        "path": "documents/document_reader_demo.pdf",
+        "max_chars": 2000
+      }
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+[
+  {
+    "role": "system",
+    "content": "You are a local tool-using agent. If multiple independent tools are needed before answering, request multiple tool calls in the same assistant message. Do not request dependent tool calls in the same message."
+  },
+  {
+    "role": "user",
+    "content": "Please read b4_file/agent_intro.txt and calculate 23 * 17 + 9. Use both results to prepare a final summary."
+  }
+]

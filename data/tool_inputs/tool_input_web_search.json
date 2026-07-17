@@ -1,0 +1,17 @@
+{
+  "query": "Agent tool calling local skill function demo",
+  "top_k": 2,
+  "timeout_seconds": 5,
+  "mock_results": [
+    {
+      "title": "Agent Tool Calling Demo",
+      "url": "https://example.com/agent-tool-calling",
+      "snippet": "A local Agent can call registered skills through a structured tool call protocol."
+    },
+    {
+      "title": "Skill Function Interface",
+      "url": "https://example.com/skill-interface",
+      "snippet": "Skill functions use JSON inputs and structured outputs so an Agent can consume results reliably."
+    }
+  ]
+}

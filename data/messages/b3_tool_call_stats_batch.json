@@ -1,0 +1,91 @@
+{
+  "role": "assistant",
+  "content": "",
+  "tool_calls": [
+    {
+      "id": "call_stats_001",
+      "name": "calculator",
+      "args": {
+        "expression": "10 + 5 * 2"
+      }
+    },
+    {
+      "id": "call_stats_002",
+      "name": "calculator",
+      "args": {
+        "expression": "2 ** 13"
+      }
+    },
+    {
+      "id": "call_stats_003",
+      "name": "file_reader",
+      "args": {
+        "path": "docs/agent_intro.txt",
+        "max_chars": 160
+      }
+    },
+    {
+      "id": "call_stats_004",
+      "name": "file_reader",
+      "args": {
+        "max_chars": 160
+      }
+    },
+    {
+      "id": "call_stats_005",
+      "name": "table_analyzer",
+      "args": {
+        "path": "tables/results.csv",
+        "max_rows_preview": 2,
+        "describe": true
+      }
+    },
+    {
+      "id": "call_stats_006",
+      "name": "table_analyzer",
+      "args": {
+        "path": "tables/results.csv",
+        "max_rows_preview": "two",
+        "describe": true
+      }
+    },
+    {
+      "id": "call_stats_007",
+      "name": "local_file_search",
+      "args": {
+        "query": "tool",
+        "root_dir": "docs",
+        "file_types": [
+          "txt",
+          "md"
+        ],
+        "top_k": 2
+      }
+    },
+    {
+      "id": "call_stats_008",
+      "name": "local_file_search",
+      "args": {
+        "query": "tool",
+        "file_types": "txt",
+        "top_k": 2
+      }
+    },
+    {
+      "id": "call_stats_009",
+      "name": "format_converter",
+      "args": {
+        "text": "alpha\nbeta",
+        "target_format": "markdown",
+        "output_filename": "stats_demo.md"
+      }
+    },
+    {
+      "id": "call_stats_010",
+      "name": "web_search",
+      "args": {
+        "query": "agent"
+      }
+    }
+  ]
+}

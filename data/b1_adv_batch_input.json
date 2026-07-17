@@ -1,0 +1,32 @@
+[
+  {
+    "conversation_id": "batch_001",
+    "user_input": "计算 (35 + 17) * 2 - 9",
+    "system_prompt_path": "../prompts/local_tool_agent.txt",
+    "selected_memory_ids": [],
+    "use_global_memory": false,
+    "toolset": "basic_tools",
+    "max_turns": 2,
+    "save_memory": "none"
+  },
+  {
+    "conversation_id": "batch_002",
+    "user_input": "读取 docs/agent_intro.txt 的前1000字",
+    "system_prompt_path": "../prompts/local_tool_agent.txt",
+    "selected_memory_ids": [],
+    "use_global_memory": false,
+    "toolset": "basic_tools",
+    "max_turns": 2,
+    "save_memory": "none"
+  },
+  {
+    "conversation_id": "batch_003",
+    "user_input": "分析 data/tables/results.csv 的基本信息",
+    "system_prompt_path": "../prompts/local_tool_agent.txt",
+    "selected_memory_ids": [],
+    "use_global_memory": false,
+    "toolset": "basic_tools",
+    "max_turns": 2,
+    "save_memory": "none"
+  }
+]

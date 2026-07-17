@@ -1,0 +1,14 @@
+{
+  "conversation_id": "conv_multi_001",
+  "user_input": "帮我阅读 docs/agent_intro.txt，总结三条中文要点。",
+  "system_prompt_path": "../prompts/local_tool_agent.txt",
+  "selected_memory_ids": [],
+  "use_global_memory": false,
+  "toolset": "basic_tools",
+  "max_turns": 3,
+  "save_memory": "none",
+  "turns": [
+    {"user_input": "刚才你总结的第一条能再详细展开一下吗？"},
+    {"user_input": "用 local_file_search 在 data/docs 目录下搜索和'tool'相关的文件。"}
+  ]
+}

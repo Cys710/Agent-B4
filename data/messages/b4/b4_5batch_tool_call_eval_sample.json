@@ -1,0 +1,271 @@
+{
+  "description": "B4 extension 5: compare tool-call success rate and token usage across the three local model entries with 20 balanced cases.",
+  "mode": "prompt_json",
+  "planning": "none",
+  "schema_passing": "prompt_injection",
+  "exact_args": false,
+  "system_prompt": "You are a local tool-using agent. Return tool calls when tools are needed before answering. If no tool is needed, answer directly.",
+  "models": [
+    {
+      "id": "qwen35_4b",
+      "label": "Qwen3.5-4B",
+      "series": "Qwen3.5",
+      "model_config": "../../configs/model.yaml",
+      "mode": "prompt_json",
+      "schema_passing": "prompt_injection"
+    },
+    {
+      "id": "qwen35_08b",
+      "label": "Qwen3.5-0.8B",
+      "series": "Qwen3.5",
+      "model_config": "../../configs/model_qwen35_08b.yaml",
+      "mode": "prompt_json",
+      "schema_passing": "prompt_injection"
+    },
+    {
+      "id": "qwen25_coder_15b",
+      "label": "Qwen2.5-Coder-1.5B-Instruct",
+      "series": "Qwen2.5-Coder",
+      "model_config": "../../configs/model_qwen25_coder_15b.yaml",
+      "mode": "prompt_json",
+      "schema_passing": "prompt_injection"
+    }
+  ],
+  "cases": [
+    {
+      "id": "direct_answer_tool_call_concept",
+      "user": "Briefly explain what a tool call is in an agent. Do not use tools.",
+      "expected_tool_calls": []
+    },
+    {
+      "id": "direct_translate_no_tool",
+      "user": "Translate this sentence into Chinese without using tools: Task execution stores structured results.",
+      "expected_tool_calls": []
+    },
+    {
+      "id": "calculate_expression",
+      "user": "Please calculate 23 * 17 + 9 before answering.",
+      "expected_tool_calls": [
+        {
+          "name": "calculator",
+          "args": {
+            "expression": "23 * 17 + 9"
+          }
+        }
+      ]
+    },
+    {
+      "id": "calculate_nested_expression",
+      "user": "Use the calculator for (128 - 36) * 4 / 2.",
+      "expected_tool_calls": [
+        {
+          "name": "calculator",
+          "args": {
+            "expression": "(128 - 36) * 4 / 2"
+          }
+        }
+      ]
+    },
+    {
+      "id": "calculate_average_score",
+      "user": "Calculate (88 + 92 + 79) / 3 and return the numeric result.",
+      "expected_tool_calls": [
+        {
+          "name": "calculator",
+          "args": {
+            "expression": "(88 + 92 + 79) / 3"
+          }
+        }
+      ]
+    },
+    {
+      "id": "read_specific_document",
+      "user": "Read the local file b4_file/agent_intro.txt before summarizing it.",
+      "expected_tool_calls": [
+        {
+          "name": "file_reader",
+          "args": {
+            "path": "b4_file/agent_intro.txt"
+          }
+        }
+      ]
+    },
+    {
+      "id": "read_markdown_notes",
+      "user": "Read the local markdown file b4_file/plan_notes.md before summarizing it.",
+      "expected_tool_calls": [
+        {
+          "name": "file_reader",
+          "args": {
+            "path": "b4_file/agent_intro.txt"
+          }
+        }
+      ]
+    },
+    {
+      "id": "search_docs_for_planning",
+      "user": "Search local files under docs for information about agent planning.",
+      "expected_tool_calls": [
+        {
+          "name": "local_file_search",
+          "args": {
+            "query": "agent planning"
+          }
+        }
+      ]
+    },
+    {
+      "id": "search_tools_schema",
+      "user": "Find local documentation or message files that mention tools_schema.",
+      "expected_tool_calls": [
+        {
+          "name": "local_file_search",
+          "args": {
+            "query": "tools_schema"
+          }
+        }
+      ]
+    },
+    {
+      "id": "search_resource_selection",
+      "user": "Search the project files for resource selection and return the most relevant matches.",
+      "expected_tool_calls": [
+        {
+          "name": "local_file_search",
+          "args": {
+            "query": "resource selection"
+          }
+        }
+      ]
+    },
+    {
+      "id": "analyze_results_table",
+      "user": "Analyze the CSV file b4_file/results.csv and include numeric statistics.",
+      "expected_tool_calls": [
+        {
+          "name": "table_analyzer",
+          "args": {
+            "path": "b4_file/results.csv"
+          }
+        }
+      ]
+    },
+    {
+      "id": "analyze_metrics_table",
+      "user": "Analyze b4_file/data.csv and include numeric statistics if possible.",
+      "expected_tool_calls": [
+        {
+          "name": "table_analyzer",
+          "args": {
+            "path": "b4_file/data.csv"
+          }
+        }
+      ]
+    },
+    {
+      "id": "convert_text_to_markdown",
+      "user": "Convert this text to markdown bullets and write it to a file: plan tasks, select resources, execute tasks.",
+      "expected_tool_calls": [
+        {
+          "name": "format_converter",
+          "args": {
+            "target_format": "markdown"
+          }
+        }
+      ]
+    },
+    {
+      "id": "convert_text_to_json",
+      "user": "Convert this text into formatted JSON and write it to a file: name=agent, module=B4, feature=batch evaluation.",
+      "expected_tool_calls": [
+        {
+          "name": "format_converter",
+          "args": {
+            "target_format": "json"
+          }
+        }
+      ]
+    },
+    {
+      "id": "read_then_convert_document",
+      "user": "Read b4_file/agent_intro.txt, convert it to markdown, and write the converted content to a file.",
+      "expected_tool_calls": [
+        {
+          "name": "read_then_convert",
+          "args": {
+            "path": "b4_file/agent_intro.txt",
+            "target_format": "markdown"
+          }
+        }
+      ]
+    },
+    {
+      "id": "python_sandbox_list_processing",
+      "user": "Run a short Python snippet to print the sum of [3, 5, 8, 13].",
+      "expected_tool_calls": [
+        {
+          "name": "python_sandbox",
+          "args": {}
+        }
+      ]
+    },
+    {
+      "id": "python_unit_test_sandbox_factorial",
+      "user": "Test this Python function with unit tests: def factorial(n): return 1 if n <= 1 else n * factorial(n - 1).",
+      "expected_tool_calls": [
+        {
+          "name": "python_unit_test_sandbox",
+          "args": {}
+        }
+      ]
+    },
+    {
+      "id": "web_search_recent_agent_tools",
+      "user": "Search the web for recent information about tool calling in AI agents.",
+      "expected_tool_calls": [
+        {
+          "name": "web_search",
+          "args": {
+            "query": "tool calling in AI agents"
+          }
+        }
+      ]
+    },
+    {
+      "id": "read_and_calculate",
+      "user": "Read b4_file/agent_intro.txt and calculate 144 / 12. Use both results later.",
+      "expected_tool_calls": [
+        {
+          "name": "file_reader",
+          "args": {
+            "path": "b4_file/agent_intro.txt"
+          }
+        },
+        {
+          "name": "calculator",
+          "args": {
+            "expression": "144 / 12"
+          }
+        }
+      ]
+    },
+    {
+      "id": "search_and_calculate",
+      "user": "Search local files for resource selection, and also calculate 88 + 12.",
+      "expected_tool_calls": [
+        {
+          "name": "local_file_search",
+          "args": {
+            "query": "resource selection"
+          }
+        },
+        {
+          "name": "calculator",
+          "args": {
+            "expression": "88 + 12"
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,65 @@
+{
+    "conversation_id": "worldcup_tactical_report_long_001",
+    "execution_mode": "integrated",
+    "status": "success",
+    "toolset": "football_analysis_tools",
+    "max_turns": 5,
+    "tool_rounds_used": 2,
+    "llm_call_count": 6,
+    "turns": [
+        {
+        "turn_index": 1,
+        "status": "success",
+        "tool_calls": [
+            {
+            "name": "local_file_search",
+            "args": {
+                "query": "世界杯 前锋 反越位 进球"
+            }
+            }
+        ],
+        "latency_ms": 118
+        },
+        {
+        "turn_index": 2,
+        "status": "success",
+        "tool_calls": [
+            {
+            "name": "local_file_search",
+            "args": {
+                "query": "世界杯 中场 控球 传球 防守覆盖"
+            }
+            }
+        ],
+        "latency_ms": 126
+        },
+        {
+        "turn_index": 3,
+        "status": "success",
+        "tool_calls": [
+            {
+            "name": "local_file_search",
+            "args": {
+                "query": "世界杯 门将 扑救 点球 出击"
+            }
+            }
+        ],
+        "latency_ms": 109
+        },
+        {
+        "turn_index": 4,
+        "status": "success",
+        "tool_calls": [
+            {
+            "name": "local_file_search",
+            "args": {
+                "query": "世界杯 VAR 越位 点球 红牌"
+            }
+            }
+        ],
+        "latency_ms": 121
+        }
+    ],
+    "warnings": [],
+    "error": null
+}

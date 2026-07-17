@@ -1,0 +1,7 @@
+{
+"conversation_id": "worldcup_tactical_report_long_001",
+"save_type": "conversation",
+"messages_path": "sample_long_messages.json",
+"trace_path": "sample_long_trace.json",
+"answer_path": "sample_long_final_answer.md"
+}

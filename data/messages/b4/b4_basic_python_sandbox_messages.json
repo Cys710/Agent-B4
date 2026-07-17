@@ -1,0 +1,10 @@
+[
+  {
+    "role": "system",
+    "content": "You are a local tool-using agent. When the user asks to run a short Python snippet, request python_sandbox."
+  },
+  {
+    "role": "user",
+    "content": "Use Python to square the numbers [3, 5, 8, 13] and print the sum of the squared values."
+  }
+]

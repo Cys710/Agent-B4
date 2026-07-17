@@ -1,0 +1,10 @@
+{
+  "conversation_id": "conv_b2_document_reader",
+  "user_input": "请调用 document_reader Skill 阅读 documents/8-王稳淞.pdf，然后告诉我这个队伍叫什么名字，组员有谁？。",
+  "system_prompt_path": "../prompts/local_tool_agent.txt",
+  "selected_memory_ids": [],
+  "use_global_memory": false,
+  "toolset": "extended_tools",
+  "max_turns": 3,
+  "save_memory": "none"
+}

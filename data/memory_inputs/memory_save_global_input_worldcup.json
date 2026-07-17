@@ -1,0 +1,7 @@
+{
+  "conversation_id": "worldcup_global_rules_001",
+  "save_type": "global",
+  "messages_path": "sample_messages_global_worldcup.json",
+  "trace_path": "sample_trace_global_worldcup.json",
+  "answer_path": "sample_final_answer_global_worldcup.md"
+}

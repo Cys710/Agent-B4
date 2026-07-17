@@ -1,0 +1,38 @@
+{
+  "role": "assistant",
+  "content": "",
+  "tool_calls": [
+    {
+      "id": "call_recover_001",
+      "name": "file_reader",
+      "args": {
+        " path ": " docs/agent_intro.txt ",
+        "max_chars": "2000"
+      }
+    },
+    {
+      "id": "call_recover_002",
+      "name": " table_analyzer ",
+      "args": {
+        "path": " tables/results.csv ",
+        "max_rows_preview": "2",
+        "describe": "true"
+      }
+    },
+    {
+      "id": "call_recover_003",
+      "name": "local_file_search",
+      "args": {
+        "query": "Agent 工具",
+        "root_dir": " docs ",
+        "file_types": "[\"txt\", \"md\"]",
+        "top_k": "2"
+      }
+    },
+    {
+      "id": "call_recover_004",
+      "name": "calculator",
+      "args": "{\"expression\":\"23 * 17 + 9\"}"
+    }
+  ]
+}

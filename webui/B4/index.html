@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>B4 Tool-Call Console</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">小牛翻译实训 · B4</p>
+          <h1>B4 Tool-Call Console</h1>
+        </div>
+        <div class="status-strip" aria-label="运行状态">
+          <div>
+            <span id="modelCount">-</span>
+            <small>Models</small>
+          </div>
+          <div>
+            <span id="caseCount">-</span>
+            <small>Cases</small>
+          </div>
+          <div>
+            <span id="lastStatus">Ready</span>
+            <small>Status</small>
+          </div>
+        </div>
+      </header>
+
+      <section class="flowline" aria-label="执行链路">
+        <span>Messages / Batch</span>
+        <i></i>
+        <span>Tools Schema</span>
+        <i></i>
+        <span>B4 Generator</span>
+        <i></i>
+        <span>Report</span>
+      </section>
+
+      <section class="workspace">
+        <aside class="panel config-panel" aria-label="运行配置">
+          <div class="panel-head">
+            <h2>Config</h2>
+            <span id="schemaBadge" class="pill accent">extended</span>
+          </div>
+
+          <div class="field-stack">
+            <label class="param-field" id="operationWrap">
+              <span>Scenario</span>
+              <select id="operation">
+                <option value="single_generate">基础 AIMessage</option>
+                <option value="plan_execute">Plan-and-Execute</option>
+                <option value="schema_compare">Schema Passing 对比</option>
+                <option value="batch_eval">多模型批量评估</option>
+              </select>
+              <small>选择 B4 的运行入口，决定下面哪些参数需要填写。</small>
+            </label>
+
+            <label class="param-field" id="messagesPathWrap">
+              <span>Messages · --messages</span>
+              <input id="messagesPath" />
+              <small>单次生成、规划执行、schema 对比使用的 messages JSON。</small>
+            </label>
+
+            <label class="param-field" id="modelConfigWrap">
+              <span>Model config · --model_config</span>
+              <input id="modelConfigPath" />
+              <small>单模型入口读取的本地模型配置，例如 configs/model.yaml。</small>
+            </label>
+
+            <label class="param-field" id="batchConfigWrap">
+              <span>Batch config · --batch_eval</span>
+              <input id="batchConfigPath" />
+              <small>批量评估配置，内部包含 models、cases、期望 tool_calls。</small>
+            </label>
+
+            <label class="param-field" id="outdirWrap">
+              <span>Output dir · --outdir</span>
+              <input id="outdir" />
+              <small>写入 raw output、AIMessage、评估报告和运行日志。</small>
+            </label>
+
+            <label class="param-field" id="schemaModeWrap">
+              <span>Schema source</span>
+              <select id="schemaMode">
+                <option value="generate">Generate from tools.yaml</option>
+                <option value="file" selected>Read tools_schema.json</option>
+              </select>
+              <small>决定 WebUI 如何准备最终传给 B4 的 --tools_schema。</small>
+            </label>
+
+            <label class="param-field" id="toolsConfigWrap">
+              <span>Tools config · B3 --tools_config</span>
+              <input id="toolsConfigPath" />
+              <small>仅在生成 schema 时使用；读取 tools_schema 文件时不需要。</small>
+            </label>
+
+            <label class="param-field" id="toolsetWrap">
+              <span>Toolset · B3 --toolset</span>
+              <select id="toolset">
+                <option value="extended_tools">extended_tools</option>
+                <option value="basic_tools">basic_tools</option>
+              </select>
+              <small>仅在从 tools.yaml 生成 schema 时使用。</small>
+            </label>
+
+            <label class="param-field" id="toolsSchemaWrap" hidden>
+              <span>Tools schema · --tools_schema</span>
+              <input id="toolsSchemaPath" value="data/messages/tools_schema.json" />
+              <small>读取已导出的 tools_schema JSON；此时不需要 Tools config。</small>
+            </label>
+
+            <label class="param-field" id="modeWrap">
+              <span>Mode · --mode</span>
+              <select id="mode">
+                <option value="prompt_json">prompt_json</option>
+                <option value="mock">mock</option>
+              </select>
+              <small>prompt_json 调本地模型；mock 用规则结果快速检查流程。</small>
+            </label>
+
+            <label class="param-field" id="schemaPassingWrap">
+              <span>Schema passing · --schema_passing</span>
+              <select id="schemaPassing">
+                <option value="prompt_injection">prompt_injection</option>
+                <option value="native_tools">native_tools</option>
+              </select>
+              <small>单次生成或 batch eval 的 schema 传参方式；Schema 对比场景会同时跑两种。</small>
+            </label>
+          </div>
+
+          <div class="toolbar compact">
+            <button id="loadConfigBtn" type="button">加载输入</button>
+            <button id="formatConfigBtn" type="button">格式化</button>
+            <button id="loadReportBtn" type="button">读取报告</button>
+          </div>
+          <button id="runBtn" class="primary wide" type="button">运行 B4 场景</button>
+          <p id="configHint" class="hint-text">等待加载默认配置...</p>
+        </aside>
+
+        <section class="panel input-panel" aria-label="输入 JSON">
+          <div class="panel-head">
+            <div>
+              <h2>Batch JSON</h2>
+              <p id="batchDescription">-</p>
+            </div>
+            <span id="batchMode" class="pill">prompt_json</span>
+          </div>
+          <textarea id="jsonEditor" rows="28" spellcheck="false"></textarea>
+          <div class="action-row">
+            <p id="inputHint">-</p>
+            <button id="copyCommandBtn" type="button">复制命令</button>
+          </div>
+        </section>
+
+        <section class="panel result-panel" aria-label="评估结果">
+          <div class="panel-head">
+            <h2>Report</h2>
+            <div class="result-actions">
+              <button id="refreshHistoryBtn" type="button">刷新日志</button>
+              <button id="clearHistoryBtn" class="danger" type="button">清空日志</button>
+            </div>
+          </div>
+
+          <div id="metricGrid" class="metric-grid"></div>
+
+          <div class="chart-block">
+            <div class="chart-head">
+              <h3>Success Rate</h3>
+              <span>tool_call_success</span>
+            </div>
+            <div id="successChart" class="bar-chart"></div>
+          </div>
+
+          <div class="case-head">
+            <h3>Case Matrix</h3>
+            <label class="small-filter">
+              <span>失败项</span>
+              <input id="failureOnly" type="checkbox" />
+            </label>
+          </div>
+          <div class="case-table-wrap">
+            <table>
+              <thead id="caseHead"></thead>
+              <tbody id="caseBody"></tbody>
+            </table>
+          </div>
+
+          <pre id="detailView" class="json-view compact-view">等待运行或读取报告...</pre>
+
+          <div class="history-head">
+            <h3>Run Log</h3>
+            <span id="outputDir">-</span>
+          </div>
+          <div id="historyList" class="history-list"></div>
+        </section>
+      </section>
+    </main>
+
+    <script src="./app.js"></script>
+  </body>
+</html>

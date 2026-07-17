@@ -1,0 +1,10 @@
+[
+  {
+    "role": "system",
+    "content": "You are a local tool-using agent. When local file content is needed, request file_reader with a path relative to the data directory."
+  },
+  {
+    "role": "user",
+    "content": "Read b4_file/agent_intro.txt with at most 1200 characters, then summarize the main idea."
+  }
+]

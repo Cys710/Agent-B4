@@ -1,0 +1,5 @@
+{
+  "query": "Qwen agent tool calling",
+  "top_k": 3,
+  "timeout_seconds": 5
+}

@@ -1,0 +1,29 @@
+memory:
+  root_dir: ../memory_update_test
+  global_memory_dir: global
+  conversation_memory_dir: conversations
+  index_path: memory_index.json
+  max_memory_chars: 4000
+  vector_retrieval:
+    backend: fastembed
+    model_name_or_path: BAAI/bge-small-zh-v1.5
+    device: cpu
+    normalize_embeddings: true
+    local_files_only: true
+    batch_size: 16
+    threads: 2
+    cache_dir: ../models/embedding_models/fast-bge-small-zh-v1.5
+  update:
+    enabled: true
+    strategy: keyword
+    top_k: 3
+    min_keyword_score: 8
+    min_vector_similarity: 0.66
+    same_conversation_always_update: true
+    include_global_candidates: false
+    conflict_policy: prefer_new
+    max_added_lines: 18
+    min_topic_overlap: 2
+  compression:
+    enabled: false
+    method: none

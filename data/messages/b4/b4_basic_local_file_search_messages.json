@@ -1,0 +1,10 @@
+[
+  {
+    "role": "system",
+    "content": "You are a local tool-using agent. When the user asks to find local documents by keywords, request local_file_search."
+  },
+  {
+    "role": "user",
+    "content": "Search local files under docs for agent tool calling. Return the top 3 matches."
+  }
+]

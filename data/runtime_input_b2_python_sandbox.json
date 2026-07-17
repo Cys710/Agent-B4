@@ -1,0 +1,10 @@
+{
+  "conversation_id": "conv_b2_python_sandbox",
+  "user_input": "请调用 python_sandbox Skill 执行一段 Python 代码，计算 [3, 5, 8, 13] 的总和与平均值，并根据工具 stdout 给出结果。",
+  "system_prompt_path": "../prompts/local_tool_agent.txt",
+  "selected_memory_ids": [],
+  "use_global_memory": false,
+  "toolset": "extended_tools",
+  "max_turns": 3,
+  "save_memory": "none"
+}

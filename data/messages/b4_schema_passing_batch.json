@@ -1,0 +1,219 @@
+{
+  "description": "B4 extension 4 batch sample: compare prompt-injected tools schema with tokenizer native tools schema for the same model.",
+  "model_config": "../../configs/model.yaml",
+  "mode": "prompt_json",
+  "exact_args": false,
+  "system_prompt": "You are a local tool-using agent. Return tool calls when a tool is needed before answering. If no tool is needed, answer directly.",
+  "cases": [
+    {
+      "id": "read_local_document",
+      "user": "Please read b4_file/agent_intro.txt before answering.",
+      "expected_tool_calls": [
+        {
+          "name": "file_reader",
+          "args": {
+            "path": "b4_file/agent_intro.txt"
+          }
+        }
+      ]
+    },
+    {
+      "id": "calculate_expression",
+      "user": "Please calculate 23 * 17 + 9 before answering.",
+      "expected_tool_calls": [
+        {
+          "name": "calculator",
+          "args": {
+            "expression": "23 * 17 + 9"
+          }
+        }
+      ]
+    },
+    {
+      "id": "read_and_calculate",
+      "user": "Please read b4_file/agent_intro.txt and calculate 23 * 17 + 9. Use both results later.",
+      "expected_tool_calls": [
+        {
+          "name": "file_reader",
+          "args": {
+            "path": "b4_file/agent_intro.txt"
+          }
+        },
+        {
+          "name": "calculator",
+          "args": {
+            "expression": "23 * 17 + 9"
+          }
+        }
+      ]
+    },
+    {
+      "id": "search_local_files",
+      "user": "Search local files under docs for information about agent planning.",
+      "expected_tool_calls": [
+        {
+          "name": "local_file_search",
+          "args": {}
+        }
+      ]
+    },
+    {
+      "id": "analyze_table",
+      "user": "Analyze the local CSV file tables/sales.csv and show a short preview.",
+      "expected_tool_calls": [
+        {
+          "name": "table_analyzer",
+          "args": {}
+        }
+      ]
+    },
+    {
+      "id": "convert_to_markdown",
+      "user": "Convert this text to markdown bullets and write the converted content to a file: planning, resource selection, execution.",
+      "expected_tool_calls": [
+        {
+          "name": "format_converter",
+          "args": {}
+        }
+      ]
+    },
+    {
+      "id": "direct_answer_no_tool",
+      "user": "Briefly explain what a task dependency means in an execution plan. Do not read files or use tools.",
+      "expected_tool_calls": []
+    },
+    {
+      "id": "read_markdown_notes",
+      "user": "Read the local markdown file docs/plan_notes.md before summarizing it.",
+      "expected_tool_calls": [
+        {
+          "name": "file_reader",
+          "args": {}
+        }
+      ]
+    },
+    {
+      "id": "calculate_average_score",
+      "user": "Calculate (88 + 92 + 79) / 3 and return the numeric result.",
+      "expected_tool_calls": [
+        {
+          "name": "calculator",
+          "args": {}
+        }
+      ]
+    },
+    {
+      "id": "calculate_nested_expression",
+      "user": "Please use the calculator for (128 - 36) * 4 / 2.",
+      "expected_tool_calls": [
+        {
+          "name": "calculator",
+          "args": {}
+        }
+      ]
+    },
+    {
+      "id": "search_configs",
+      "user": "Search local files for occurrences of model_config and return the most relevant matches.",
+      "expected_tool_calls": [
+        {
+          "name": "local_file_search",
+          "args": {}
+        }
+      ]
+    },
+    {
+      "id": "search_tool_schema",
+      "user": "Find local documentation or message files that mention tools_schema.",
+      "expected_tool_calls": [
+        {
+          "name": "local_file_search",
+          "args": {}
+        }
+      ]
+    },
+    {
+      "id": "search_plan_execute",
+      "user": "Search the project documents for plan_and_execute examples.",
+      "expected_tool_calls": [
+        {
+          "name": "local_file_search",
+          "args": {}
+        }
+      ]
+    },
+    {
+      "id": "analyze_metrics_table",
+      "user": "Analyze tables/metrics.csv and include numeric statistics if possible.",
+      "expected_tool_calls": [
+        {
+          "name": "table_analyzer",
+          "args": {}
+        }
+      ]
+    },
+    {
+      "id": "analyze_users_table",
+      "user": "Preview the rows and columns in data/users.tsv.",
+      "expected_tool_calls": [
+        {
+          "name": "table_analyzer",
+          "args": {}
+        }
+      ]
+    },
+    {
+      "id": "convert_text_to_json",
+      "user": "Convert this text into formatted JSON and write it to a file: name=agent, module=B4, feature=schema passing.",
+      "expected_tool_calls": [
+        {
+          "name": "format_converter",
+          "args": {}
+        }
+      ]
+    },
+    {
+      "id": "convert_steps_to_bullets",
+      "user": "Turn this text into markdown bullets and save it: plan tasks, select resources, execute tasks, summarize results.",
+      "expected_tool_calls": [
+        {
+          "name": "format_converter",
+          "args": {}
+        }
+      ]
+    },
+    {
+      "id": "read_and_search_independent",
+      "user": "Read b4_file/agent_intro.txt and also search local files for resource selection. These two checks are independent.",
+      "expected_tool_calls": [
+        {
+          "name": "file_reader",
+          "args": {}
+        },
+        {
+          "name": "local_file_search",
+          "args": {}
+        }
+      ]
+    },
+    {
+      "id": "calculate_and_read_independent",
+      "user": "Read b4_file/agent_intro.txt and calculate 144 / 12. These can be done independently before answering.",
+      "expected_tool_calls": [
+        {
+          "name": "file_reader",
+          "args": {}
+        },
+        {
+          "name": "calculator",
+          "args": {}
+        }
+      ]
+    },
+    {
+      "id": "direct_translate_no_tool",
+      "user": "Translate this sentence into Chinese without using tools: Task execution stores structured results.",
+      "expected_tool_calls": []
+    }
+  ]
+}

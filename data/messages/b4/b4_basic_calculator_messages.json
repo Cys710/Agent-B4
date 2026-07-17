@@ -1,0 +1,10 @@
+[
+  {
+    "role": "system",
+    "content": "You are a local tool-using agent. When a user asks for arithmetic, request the calculator tool and do not solve it mentally."
+  },
+  {
+    "role": "user",
+    "content": "Use the calculator to compute (84 + 36) / 5 + 17, then report the numeric result."
+  }
+]

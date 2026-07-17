@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>B3/B5 Demo Console</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">小牛翻译实训 · Agent</p>
+          <h1>B3/B5 Demo Console</h1>
+        </div>
+        <div class="status-strip" aria-label="运行状态">
+          <div><span id="totalDemos">-</span><small>Demos</small></div>
+          <div><span id="lastStatus">Ready</span><small>Status</small></div>
+          <div><span id="lastLatency">-</span><small>Latency</small></div>
+        </div>
+      </header>
+
+      <section class="flowline" aria-label="执行链路">
+        <span>Demo Input</span><i></i><span>B3 Tool Layer</span><i></i><span>B5 Memory</span><i></i><span>Artifacts</span>
+      </section>
+
+      <section class="workspace">
+        <aside class="panel demo-panel" aria-label="演示列表">
+          <div class="panel-head">
+            <h2>Demo</h2>
+            <span id="demoCount" class="pill">loading</span>
+          </div>
+          <div class="filter-row" role="tablist" aria-label="演示模块">
+            <button class="filter active" data-filter="all" type="button">全部</button>
+            <button class="filter" data-filter="B3" type="button">B3</button>
+            <button class="filter" data-filter="B5" type="button">B5</button>
+          </div>
+          <div id="demoList" class="demo-list"></div>
+        </aside>
+
+        <section class="panel input-panel" aria-label="JSON 输入">
+          <div class="panel-head">
+            <div>
+              <h2 id="selectedLabel">Input</h2>
+              <p id="selectedDescription"></p>
+            </div>
+            <span id="selectedCategory" class="pill accent">-</span>
+          </div>
+          <div class="toolbar" aria-label="输入操作">
+            <button id="sampleBtn" type="button">加载样例</button>
+            <button id="formatBtn" type="button">格式化</button>
+          </div>
+          <label class="editor-label" for="jsonInput">JSON</label>
+          <textarea id="jsonInput" spellcheck="false"></textarea>
+          <div class="action-row">
+            <p id="inputHint">-</p>
+            <button id="runBtn" class="primary" type="button">运行演示</button>
+          </div>
+        </section>
+
+        <section class="panel result-panel" aria-label="执行结果">
+          <div class="panel-head">
+            <h2>Result</h2>
+            <div class="result-actions">
+              <button id="copyBtn" type="button">复制</button>
+              <button id="refreshHistoryBtn" type="button">刷新日志</button>
+              <button id="clearHistoryBtn" class="danger" type="button">清空日志</button>
+            </div>
+          </div>
+
+          <div id="resultSummary" class="result-summary">
+            <div><span>-</span><small>Module</small></div>
+            <div><span>-</span><small>Operation</small></div>
+            <div><span>-</span><small>Artifacts</small></div>
+          </div>
+
+          <pre id="resultView" class="json-view">等待执行...</pre>
+
+          <div class="artifact-head">
+            <h3>Artifacts</h3>
+            <span id="outputDir">-</span>
+          </div>
+          <div id="artifactList" class="artifact-list"></div>
+
+          <div class="history-head">
+            <h3>Run Log</h3>
+          </div>
+          <div id="historyList" class="history-list"></div>
+        </section>
+      </section>
+    </main>
+
+    <script src="/app.js"></script>
+  </body>
+</html>

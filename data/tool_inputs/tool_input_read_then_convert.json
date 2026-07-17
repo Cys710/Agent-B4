@@ -1,0 +1,6 @@
+{
+  "path": "docs/agent_intro.txt",
+  "target_format": "markdown",
+  "max_chars": 2000,
+  "output_filename": "agent_intro_converted.md"
+}

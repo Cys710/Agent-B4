@@ -1,0 +1,16 @@
+{
+  "conversation_id": "conv_switch_001",
+  "user_input": "帮我用 calculator 算一下 256 * 128 的结果。",
+  "system_prompt_path": "../prompts/local_tool_agent.txt",
+  "selected_memory_ids": [],
+  "use_global_memory": false,
+  "toolset": "basic_tools",
+  "max_turns": 2,
+  "save_memory": "none",
+  "turns": [
+    {"user_input": "刚才的结果再除以 8 是多少？"}
+  ],
+  "prompt_switches": [
+    {"after_user_turn": 1, "prompt_path": "../prompts/brief_agent.txt"}
+  ]
+}

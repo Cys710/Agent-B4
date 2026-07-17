@@ -1,0 +1,33 @@
+{
+  "description": "Basic B4 tool-call message samples for single AIMessage generation and ToolMessage follow-up demos.",
+  "tool_call_requests": [
+    "b4_basic_calculator_messages.json",
+    "b4_basic_file_reader_messages.json",
+    "b4_basic_local_file_search_messages.json",
+    "b4_basic_table_analyzer_messages.json",
+    "b4_basic_format_converter_messages.json",
+    "b4_basic_read_then_convert_messages.json",
+    "b4_basic_python_sandbox_messages.json",
+    "b4_basic_python_unit_test_messages.json",
+    "b4_basic_web_search_messages.json",
+    "b4_multi_tool_file_table_calc_messages.json",
+    "b4_multi_tool_document_table_messages.json",
+    "b4_multi_tool_search_convert_calc_messages.json"
+  ],
+  "tool_result_followups": [
+    "b4_basic_calculator_with_tool_result.json",
+    "b4_multi_tool_with_results.json",
+    "b4_basic_tool_error_recovery_messages.json",
+    "b4_multi_tool_with_results_followup.json"
+  ],
+  "batch_evals": [
+    "b4_multi_tool_batch.json"
+  ],
+  "plan_and_execute":[
+    "b4_pe_case_01_file_calc_messages.json",
+    "b4_pe_case_02_pdf_table_router_messages.json",
+    "b4_pe_case_03_search_convert_calc_messages.json",
+    "b4_pe_case_04_dependent_read_convert_messages.json",
+    "b4_pe_case_05_model_task_messages.json"
+  ]
+}

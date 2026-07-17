@@ -1,0 +1,25 @@
+{
+    "conversation_id": "worldcup_global_rules_001",
+    "execution_mode": "integrated",
+    "status": "success",
+    "toolset": "football_memory_tools",
+    "max_turns": 3,
+    "tool_rounds_used": 0,
+    "llm_call_count": 2,
+    "turns": [
+        {
+        "turn_index": 1,
+        "status": "success",
+        "tool_calls": [],
+        "latency_ms": 95
+        },
+        {
+        "turn_index": 2,
+        "status": "success",
+        "tool_calls": [],
+        "latency_ms": 88
+        }
+    ],
+    "warnings": [],
+    "error": null
+}
